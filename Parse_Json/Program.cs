@@ -12,14 +12,25 @@ class Program
          using(StreamReader reader=new StreamReader(@"/Users/anantsingh/Desktop/C#_NET/strawHats.json")){
             //converting from json to C# Object
             string connectionString = "Data Source=localhost;Initial Catalog=Json_Data;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false;User Id=sa;Password=AnantSingh123";
-               var pirates=JsonConvert.DeserializeObject<List<Pirates>>(reader.ReadToEnd());
+                 // Deserialize the JSON into a dictionary
+                var jsonData = JsonConvert.DeserializeObject<Dictionary<string, List<Pirates>>>(reader.ReadToEnd());
+                // Extract the list of pirates
+               // System.Console.WriteLine(jsonData);
+                var pirates = jsonData["pirates"];
                using (SqlConnection conn = new SqlConnection(connectionString)){
-               conn.Open();
+                 conn.Open();
+                string query="TRUNCATE TABLE Pirates";
+                using(SqlCommand truncateCmd = new SqlCommand(query, conn))
+                    {
+                        truncateCmd.ExecuteNonQuery();
+                    }
+
                foreach (var member in pirates)
                {
                 //System.Console.WriteLine(member.name);
-                string query = "INSERT INTO Pirates (Id, Name, Bounty, Crew) VALUES (@Id, @Name, @Bounty, @Crew)";
-                  using (SqlCommand cmd = new SqlCommand(query, conn))
+            
+                string query1 = "INSERT INTO Pirates (Id, Name, Bounty, Crew) VALUES (@Id, @Name, @Bounty, @Crew)";
+                  using (SqlCommand cmd = new SqlCommand(query1, conn))
                     {
                         cmd.Parameters.AddWithValue("@Id", member.id);
                         cmd.Parameters.AddWithValue("@Name", member.name);
