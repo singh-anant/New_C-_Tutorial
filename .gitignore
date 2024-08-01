@@ -14,3 +14,4 @@ obj/
 # Ignore Rider settings
 .idea/
 .config
+Json_Parser_SQL_Server/Migrations

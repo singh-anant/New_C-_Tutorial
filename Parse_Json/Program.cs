@@ -9,7 +9,7 @@ using Parse_Json;
 class Program
 {
      static void Main(){
-         using(StreamReader reader=new StreamReader(@"/Users/anantsingh/Desktop/C#_NET/strawHats.json")){
+         using(StreamReader reader=new StreamReader(    )){
             //converting from json to C# Object
             string connectionString = "Data Source=localhost;Initial Catalog=Json_Data;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false;User Id=sa;Password=AnantSingh123";
                  // Deserialize the JSON into a dictionary
@@ -39,7 +39,7 @@ class Program
                         cmd.ExecuteNonQuery();
                     }
                }
-               }
+            }
                
          }
     }
