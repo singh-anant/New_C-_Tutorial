@@ -11,6 +11,7 @@ using Json_Parser_SQL_Server;
             optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Json_Data;Integrated Security=True;TrustServerCertificate=true;Trusted_Connection=false;User Id=sa;Password=AnantSingh123");
         }
 
+
         public void ResetTable()
         {
             // Drop the table if it exists
